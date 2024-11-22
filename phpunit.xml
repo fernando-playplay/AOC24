@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+        cacheDirectory="tmp/phpunit/.phpunit.cache"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        executionOrder="random"
+        failOnWarning="true"
+        failOnRisky="true"
+        failOnEmptyTestSuite="true"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutChangesToGlobalState="true"
+        displayDetailsOnTestsThatTriggerWarnings="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
+        displayDetailsOnTestsThatTriggerErrors="true"
+        displayDetailsOnTestsThatTriggerNotices="true"
+>
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <ini name="display_errors" value="On" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Tests">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
