@@ -6,9 +6,13 @@ namespace App;
 
 final class DataReader
 {
-    public static function readLine(int $day, int $part): \Generator
+    public static function readLine(int $day, bool $isExample): \Generator
     {
-        $file = __DIR__ . '/data/' . "$day.$part.txt";
+        if ($isExample) {
+            $file = __DIR__ . '/data/' . "$day.example.txt";
+        } else {
+            $file = __DIR__ . '/data/' . "$day.txt";
+        }
         $fp = fopen($file, 'rb');
 
         while (($line = fgets($fp)) !== false) {
