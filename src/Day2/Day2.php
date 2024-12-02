@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Day2;
 
-use App\DataReader;
+use App\AdventOfCodeProblem;
+use App\Utils\DataReader;
 
-final readonly class Day2
+final readonly class Day2 implements AdventOfCodeProblem
 {
     public function __construct(
         private bool $withExampleData = false,
@@ -19,42 +20,8 @@ final readonly class Day2
         foreach ($lineGenerator as $line) {
             $values = array_map(static fn (string $val): int => (int) $val, explode(' ', $line));
 
-            $totalValues = count($values);
-            $previous = null;
-            $isIncreasing = null;
-            foreach ($values as $idx => $current) {
-                if ($previous === null) {
-                    $previous = $current;
-                    continue;
-                }
-
-                if ($previous === $current) {
-                    break;
-                }
-
-                if ($previous < $current) {
-                    if ($isIncreasing === null) {
-                        $isIncreasing = true;
-                    } elseif (!$isIncreasing) {
-                        break;
-                    }
-                } else {
-                    if ($isIncreasing === null) {
-                        $isIncreasing = false;
-                    } elseif ($isIncreasing) {
-                        break;
-                    }
-                }
-
-                if (abs($previous - $current) > 3) {
-                    break;
-                }
-
-                if (($idx + 1) === $totalValues) {
-                    $solution++;
-                } else {
-                    $previous = $current;
-                }
+            if ($this->areLevelsValid($values)) {
+                $solution++;
             }
         }
 

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Day1;
 
-use App\DataReader;
+use App\AdventOfCodeProblem;
+use App\Utils\DataReader;
 
-final readonly class Day1
+final readonly class Day1 implements AdventOfCodeProblem
 {
     public function __construct(
         private bool $withExampleData = false,

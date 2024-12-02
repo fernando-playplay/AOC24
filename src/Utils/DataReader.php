@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Utils;
 
 final class DataReader
 {
     public static function readLine(int $day, bool $isExample): \Generator
     {
         if ($isExample) {
-            $file = __DIR__ . '/data/' . "$day.example.txt";
+            $file = __DIR__ . '/../data/' . "$day.example.txt";
         } else {
-            $file = __DIR__ . '/data/' . "$day.txt";
+            $file = __DIR__ . '/../data/' . "$day.txt";
         }
         $fp = fopen($file, 'rb');
 
