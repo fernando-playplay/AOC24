@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Day3;
 
-use App\Day2\Day2;
 use App\Day3\Day3;
 use PHPUnit\Framework\TestCase;
 
