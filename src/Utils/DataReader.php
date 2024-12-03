@@ -21,4 +21,15 @@ final class DataReader
 
         fclose($fp);
     }
+
+    public static function readWholeFile(int $day, bool $isExample): string
+    {
+        if ($isExample) {
+            $file = __DIR__ . '/../data/' . "$day.example.txt";
+        } else {
+            $file = __DIR__ . '/../data/' . "$day.txt";
+        }
+
+        return trim(file_get_contents($file));
+    }
 }
