@@ -6,14 +6,20 @@ namespace App\Utils;
 
 final class DataReader
 {
+    public static function readChar(int $day, bool $isExample): \Generator
+    {
+        $fp = fopen(self::filePath($day, $isExample), 'rb');
+
+        while (($char = fgetc($fp)) !== false) {
+            yield $char;
+        }
+
+        fclose($fp);
+    }
+
     public static function readLine(int $day, bool $isExample): \Generator
     {
-        if ($isExample) {
-            $file = __DIR__ . '/../data/' . "$day.example.txt";
-        } else {
-            $file = __DIR__ . '/../data/' . "$day.txt";
-        }
-        $fp = fopen($file, 'rb');
+        $fp = fopen(self::filePath($day, $isExample), 'rb');
 
         while (($line = fgets($fp)) !== false) {
             yield trim($line, "\r\n");
@@ -24,12 +30,15 @@ final class DataReader
 
     public static function readWholeFile(int $day, bool $isExample): string
     {
+        return trim(file_get_contents(self::filePath($day, $isExample)));
+    }
+
+    private static function filePath(int $day, bool $isExample): string
+    {
         if ($isExample) {
-            $file = __DIR__ . '/../data/' . "$day.example.txt";
-        } else {
-            $file = __DIR__ . '/../data/' . "$day.txt";
+            return __DIR__ . '/../data/' . "$day.example.txt";
         }
 
-        return trim(file_get_contents($file));
+        return __DIR__ . '/../data/' . "$day.txt";
     }
 }
