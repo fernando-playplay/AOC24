@@ -36,9 +36,9 @@ final class DataReader
     private static function filePath(int $day, bool $isExample): string
     {
         if ($isExample) {
-            return __DIR__ . '/../data/' . "$day.example.txt";
+            return __DIR__ . '/../data/' . "day$day/$day.example.txt";
         }
 
-        return __DIR__ . '/../data/' . "$day.txt";
+        return __DIR__ . '/../data/' . "day$day/$day.txt";
     }
 }
